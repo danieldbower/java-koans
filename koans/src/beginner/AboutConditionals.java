@@ -15,7 +15,7 @@ public class AboutConditionals {
         if (true) {
             x++;
         }
-        assertEquals(x, __);
+        assertEquals(x, 2);
     }
 
     @Koan
@@ -27,7 +27,7 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, __);
+        assertEquals(x, 0);
     }
 
     @Koan
@@ -42,7 +42,7 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, __);
+        assertEquals(x, 10);
     }
 
     @Koan
@@ -52,16 +52,14 @@ public class AboutConditionals {
         boolean secretBoolean = false;
         boolean otherBooleanCondition = true;
         // Ifs without curly braces are ugly and not recommended but still valid:
-        if (secretBoolean) {
+        if (secretBoolean) 
             x++;
-        }
-        if (otherBooleanCondition) {
+        if (otherBooleanCondition)
             x = 10;
-        } else {
+        else // Where does this else belong to!?
             x--;
-        }
-        // Where does this else belong to!?
-        assertEquals(x, __);
+        
+        assertEquals(x, 10);
     }
 
     @Koan
@@ -78,7 +76,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic One");
     }
 
     @Koan
@@ -93,7 +91,9 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic OneTwoNothing");
+
+        // Interesting, ALL statements after the matching case are executed, not just the matching and default.
     }
 
     @Koan
@@ -108,14 +108,17 @@ public class AboutConditionals {
             case 2:
                 result += "Two";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic NothingTwo");
     }
 
     @Koan
     public void switchStatementConstants() {
         int i = 5;
-        // What happens if you remove the 'final' modifier?
-        // What does this mean for case values?
+        // What happens if you remove the 'final' modifier?  
+        // ---No Compilation:  Constant Expression Required
+        //
+        // What does this mean for case values?  
+        // -- Have to be final for an int
         final int caseOne = 1;
         String result = "Basic ";
         switch (i) {
@@ -125,7 +128,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic Nothing");
     }
 
     @Koan
@@ -142,7 +145,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic One");
     }
 
     @Koan
@@ -152,6 +155,6 @@ public class AboutConditionals {
         // Why did we use a variable here?
         // What happens if you replace 'a' with '6' below?
         if ((a < 9) || (++i < 8)) i = i + 1;
-        assertEquals(i, __);
+        assertEquals(i, 2);
     }
 }
